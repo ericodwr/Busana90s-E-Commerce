@@ -1,0 +1,92 @@
+<div class="h-screen">
+  <h1>Promotion List</h1>
+
+  <div class="card p-6">
+    <p-table [value]="promotions" [tableStyle]="{ 'min-width': '60rem' }">
+      <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+          Promotions
+          <div>
+            <app-button
+              label="Create"
+              routerLink="/promotions/create"
+              icon="pi pi-plus"
+            ></app-button>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>No.</th>
+          <th>Subject</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Broadcast</th>
+          <th>Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-promotion let-rowIndex="rowIndex">
+        <tr>
+          <td>{{ rowIndex + 1 }}</td>
+          <td>{{ promotion.subject }}</td>
+          <td>{{ promotion.title }}</td>
+          <td>{{ promotion.description }}</td>
+          <td>
+            <app-button
+              label="Send"
+              [loading]="loading"
+              (clickChange)="sendEmail(promotion)"
+            ></app-button>
+          </td>
+          <td>
+            <div class="flex justify-content-between w-5">
+              <i
+                (click)="onDeleteModal(promotion.id)"
+                class="pi pi-trash text-red-500 cursor-pointer"
+                style="font-size: 1rem"
+                pTooltip="Delete"
+                tooltipPosition="top"
+                [showDelay]="300"
+                [hideDelay]="200"
+              ></i>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+          In total there are
+          {{ promotions ? promotions.length : 0 }} Promotions.
+        </div>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<!-- Delete Banner Pop Up -->
+<p-dialog
+  header="Confirmation"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <p class="m-0">Are you sure want to delete this Banner?</p>
+  <ng-template pTemplate="footer">
+    <app-button
+      label="Delete"
+      icon="pi pi-trash"
+      classBtn="p-button-danger"
+      (clickChange)="deleteModal()"
+    >
+    </app-button>
+    <app-button
+      label="Cancel"
+      icon="pi pi-times"
+      classBtn="p-button-secondary"
+      (click)="visible = false"
+    >
+    </app-button>
+  </ng-template>
+</p-dialog>

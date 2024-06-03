@@ -1,0 +1,262 @@
+<div class="min-h-screen">
+  <div class="card p-6">
+    <p-table [value]="orders" [tableStyle]="{ 'min-width': '60rem' }">
+      <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+          Orders
+          <div>
+            <a [href]="exportExcel" target="_blank" rel="noopener noreferrer">
+              <app-button
+                label="Export Data"
+                icon="pi pi-file-excel"
+                classBtn="mr-4 p-button-secondary"
+              ></app-button>
+            </a>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>No.</th>
+          <th>Status</th>
+          <th>Payment Type</th>
+          <th>Total Price</th>
+          <th>Total Product</th>
+          <th>Order Details</th>
+          <th>Customer</th>
+          <th>Shipment</th>
+          <th>Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-order let-rowIndex="rowIndex">
+        <tr>
+          <td>{{ rowIndex + 1 }}</td>
+          <td>
+            <p-tag
+              [value]="order.status"
+              [severity]="getSeverity(order.status)"
+            ></p-tag>
+          </td>
+          <td>
+            <p>{{ order.payment_type ? order.payment_type : "Not Pay" }}</p>
+          </td>
+          <td>
+            <p>Rp. {{ order.total }}</p>
+          </td>
+          <td>
+            <p>{{ order.order_details.length }}</p>
+          </td>
+          <td>
+            <app-button
+              label="Details"
+              (clickChange)="onOrderDetailModal(order.order_details)"
+            >
+            </app-button>
+          </td>
+          <td>
+            <app-button
+              label="Details"
+              (clickChange)="onCustomerModal(order.customers)"
+            >
+            </app-button>
+          </td>
+          <td>
+            <app-button
+              label="Details"
+              (clickChange)="onShipmentModal(order.shipments)"
+            >
+            </app-button>
+          </td>
+          <td>
+            <app-button
+              label="Add Receipt Number"
+              classBtn="mr-4 p-button-secondary"
+              (clickChange)="onUpdateModal(order.shipments.id)"
+            ></app-button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+          In total there are {{ orders ? orders.length : 0 }} Orders.
+        </div>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<!-- Customer Detail -->
+<p-dialog
+  header="Customer Detail"
+  [(visible)]="customerVisible"
+  [modal]="true"
+  [style]="{ width: '60vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div class="grid">
+    <div class="grid col-12">
+      <p class="col-5">Name</p>
+      <p class="col-1">:</p>
+      <p class="col-6">{{ customerData?.name }}</p>
+    </div>
+
+    <div class="grid col-12">
+      <p class="col-5">Email</p>
+      <p class="col-1">:</p>
+      <p class="col-6">{{ customerData?.email }}</p>
+    </div>
+
+    <div class="grid col-12">
+      <p class="col-5">Phone</p>
+      <p class="col-1">:</p>
+      <p class="col-6">{{ customerData?.phone }}</p>
+    </div>
+
+    <div class="grid col-12">
+      <p class="col-5">Province</p>
+      <p class="col-1">:</p>
+      <p class="col-6">{{ customerData?.province }}</p>
+    </div>
+
+    <div class="grid col-12">
+      <p class="col-5">City:</p>
+      <p class="col-1">:</p>
+      <p class="col-6">{{ customerData?.city }}</p>
+    </div>
+
+    <div class="grid col-12">
+      <p class="col-5">Address:</p>
+      <p class="col-1">:</p>
+      <p class="col-6">{{ customerData?.address }}</p>
+    </div>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <app-button
+      label="Cancel"
+      icon="pi pi-times"
+      classBtn="p-button-secondary"
+      (click)="customerVisible = false"
+    >
+    </app-button>
+  </ng-template>
+</p-dialog>
+
+<!-- Shipment Detail -->
+<p-dialog
+  header="Shipment Detail"
+  [(visible)]="shipmentVisible"
+  [modal]="true"
+  [style]="{ width: '60vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div class="grid">
+    <div class="grid col-12">
+      <p class="col-5">Courier</p>
+      <p class="col-1">:</p>
+      <p class="col-6">{{ shipmentData?.courier?.toLocaleUpperCase() }}</p>
+    </div>
+
+    <div class="grid col-12">
+      <p class="col-5">Services</p>
+      <p class="col-1">:</p>
+      <p class="col-6">{{ shipmentData?.services }}</p>
+    </div>
+
+    <div class="grid col-12">
+      <p class="col-5">Shipping Cost</p>
+      <p class="col-1">:</p>
+      <p class="col-6">{{ shipmentData?.shipping_cost }}</p>
+    </div>
+
+    <div class="grid col-12">
+      <p class="col-5">Receipt Number</p>
+      <p class="col-1">:</p>
+      <p class="col-6">{{ shipmentData?.receipt_number }}</p>
+    </div>
+  </div>
+  <ng-template pTemplate="footer">
+    <app-button
+      label="Cancel"
+      icon="pi pi-times"
+      classBtn="p-button-secondary"
+      (click)="shipmentVisible = false"
+    >
+    </app-button>
+  </ng-template>
+</p-dialog>
+
+<!-- Order Detail -->
+<p-dialog
+  header="Order Detail"
+  [(visible)]="orderDetailVisible"
+  [modal]="true"
+  [style]="{ width: '60vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div class="grid">
+    <div *ngFor="let data of orderDetailData" class="grid col-12">
+      <p class="col-4">1x {{ data.products.name }}</p>
+      <p class="col-4">{{ data.products.size }}</p>
+      <p class="col-4">Rp. {{ data.products.price }}</p>
+    </div>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <app-button
+      label="Cancel"
+      icon="pi pi-times"
+      classBtn="p-button-secondary"
+      (click)="shipmentVisible = false"
+    >
+    </app-button>
+  </ng-template>
+</p-dialog>
+
+<!-- Update Receipt Number -->
+<p-dialog
+  header="Add Receipt Number"
+  [(visible)]="updateVisible"
+  [modal]="true"
+  [style]="{ width: '60vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <div class="grid my-4">
+    <form [formGroup]="updateForm" class="grid w-full">
+      <div class="col-12">
+        <label for="receipt_number"> Receipt Number </label>
+      </div>
+      <div class="col-12">
+        <input
+          type="text"
+          id="receipt_number"
+          name="receipt_number"
+          class="col-12 mt-2"
+          pInputText
+          formControlName="receipt_number"
+        />
+      </div>
+    </form>
+  </div>
+  <ng-template pTemplate="footer">
+    <app-button
+      label="Update"
+      btnType="submit"
+      (clickChange)="updateReceiptNumber()"
+      [disabled]="!updateForm.valid"
+      [disabled]="updateLoading"
+    >
+    </app-button>
+    <app-button
+      label="Cancel"
+      icon="pi pi-times"
+      classBtn="p-button-secondary"
+      (click)="shipmentVisible = false"
+    >
+    </app-button>
+  </ng-template>
+</p-dialog>

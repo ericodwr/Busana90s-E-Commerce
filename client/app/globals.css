@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --primary: #cc509d;
+  --secondary: #914c77;
+  --light: #e38ac2;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  .grid-homepage {
+    @apply grid md:grid-cols-4 2xl:grid-cols-4 xl:gap-x-20 2xl:gap-x-20 gap-y-12;
+  }
+
+  .grid-other-product {
+    @apply grid grid-cols-6 xl:gap-x-14 2xl:gap-x-20 gap-y-12;
+  }
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--light) #f1f1f1;
+}

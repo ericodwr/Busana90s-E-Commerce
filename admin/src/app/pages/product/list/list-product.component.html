@@ -1,0 +1,117 @@
+<div class="min-h-screen">
+  <h1>Producttt List</h1>
+
+  <div class="card p-6">
+    <p-table [value]="products" [tableStyle]="{ 'min-width': '60rem' }">
+      <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+          Products
+          <div>
+            <a [href]="exportExcel" target="_blank" rel="noopener noreferrer">
+              <app-button
+                label="Export Data"
+                icon="pi pi-file-excel"
+                classBtn="mr-4 p-button-secondary"
+              ></app-button>
+            </a>
+            <app-button
+              label="Create"
+              routerLink="/products/create"
+              icon="pi pi-plus"
+            ></app-button>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>No.</th>
+          <th>Name</th>
+          <th>Image</th>
+          <th>Size</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
+        <tr>
+          <td>{{ rowIndex + 1 }}</td>
+          <td>{{ product.name }}</td>
+          <td>
+            <img
+              src="{{ url }}{{ product.product_imgs[0]?.img_url }}"
+              [alt]="product.name"
+              width="100"
+              class="shadow-4"
+            />
+          </td>
+          <td>{{ product.size.toUpperCase() }}</td>
+          <td>{{ product.categories.name }}</td>
+          <td>Rp. {{ product.price }}</td>
+          <td>
+            <p-tag
+              [value]="product.status ? 'Active' : 'Inactive'"
+              [severity]="getSeverity(product.status)"
+            ></p-tag>
+          </td>
+          <td>
+            <div class="flex justify-content-between w-5">
+              <i
+                class="pi pi-pencil cursor-pointer"
+                style="font-size: 1rem"
+                pTooltip="Edit"
+                tooltipPosition="top"
+                [showDelay]="300"
+                [hideDelay]="200"
+                routerLink="/products/edit/{{ product.id }}"
+              ></i>
+              <i
+                (click)="onDeleteModal(product.id)"
+                class="pi pi-trash text-red-500 cursor-pointer"
+                style="font-size: 1rem"
+                pTooltip="Delete"
+                tooltipPosition="top"
+                [showDelay]="300"
+                [hideDelay]="200"
+              ></i>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+          In total there are {{ products ? products.length : 0 }} products.
+        </div>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<!-- Delete Product Pop Up -->
+<p-dialog
+  header="Confirmation"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <p class="m-0">Are you sure want to delete this product?</p>
+  <ng-template pTemplate="footer">
+    <app-button
+      label="Delete"
+      icon="pi pi-trash"
+      classBtn="p-button-danger"
+      (clickChange)="deleteProduct()"
+    >
+    </app-button>
+    <app-button
+      label="Cancel"
+      icon="pi pi-times"
+      classBtn="p-button-secondary"
+      (click)="visible = false"
+    >
+    </app-button>
+  </ng-template>
+</p-dialog>

@@ -1,0 +1,42 @@
+<div
+  class="flex h-screen align-items-center justify-content-center flex-column container"
+>
+  <h3>Login SendbyLov</h3>
+  <form [formGroup]="loginReqDto" (ngSubmit)="onLogin()">
+    <!-- email -->
+    <div class="my-3 grid align-items-center gy-md-2">
+      <div class="col-12">
+        <label for="email-address" class="form-label">Email address as</label>
+      </div>
+      <div class="col-12">
+        <input
+          pInputText
+          type="text"
+          class="form-control col-12"
+          id="email-address"
+          placeholder="name@example.com"
+          formControlName="username"
+        />
+      </div>
+
+      <!-- password -->
+      <div class="col-12">
+        <label for="password" class="form-label">Password</label>
+      </div>
+      <div class="col-12">
+        <input
+          pInputText
+          type="password"
+          class="form-control col-12"
+          id="password"
+          placeholder="password"
+          formControlName="password"
+        />
+      </div>
+      <div class="col-12">
+        <app-button type="submit" label="Login" [loading]="loading">
+        </app-button>
+      </div>
+    </div>
+  </form>
+</div>

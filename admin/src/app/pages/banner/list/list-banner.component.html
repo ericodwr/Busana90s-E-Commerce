@@ -1,0 +1,140 @@
+<div class="h-screen">
+  <h1>banner list</h1>
+
+  <div class="card p-6">
+    <p-table [value]="banners" [tableStyle]="{ 'min-width': '60rem' }">
+      <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+          Banners
+          <div>
+            <app-button
+              label="Create"
+              routerLink="/banners/create"
+              icon="pi pi-plus"
+            ></app-button>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th>No.</th>
+          <th>Image</th>
+          <th>Title</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-banner let-rowIndex="rowIndex">
+        <tr>
+          <td>{{ rowIndex + 1 }}</td>
+          <td>
+            <img
+              src="{{ url }}{{ banner.img_url }}"
+              [alt]="banner.name"
+              width="100"
+              class="shadow-4"
+            />
+          </td>
+          <td>{{ banner.title }}</td>
+          <td>
+            <p-tag
+              [value]="banner.isActive ? 'Show' : 'Hide'"
+              [severity]="getSeverity(banner.isActive)"
+            ></p-tag>
+          </td>
+          <td>
+            <div class="flex justify-content-between w-5">
+              <i
+                class="pi pi-pencil cursor-pointer"
+                style="font-size: 1rem"
+                pTooltip="Edit"
+                tooltipPosition="top"
+                [showDelay]="300"
+                [hideDelay]="200"
+                (click)="onUpdateModal(banner.id, banner.isActive)"
+              ></i>
+              <i
+                (click)="onDeleteModal(banner.id)"
+                class="pi pi-trash text-red-500 cursor-pointer"
+                style="font-size: 1rem"
+                pTooltip="Delete"
+                tooltipPosition="top"
+                [showDelay]="300"
+                [hideDelay]="200"
+              ></i>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+          In total there are {{ banners ? banners.length : 0 }} banners.
+        </div>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<!-- Delete Banner Pop Up -->
+<p-dialog
+  header="Confirmation"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <p class="m-0">Are you sure want to delete this Banner?</p>
+  <ng-template pTemplate="footer">
+    <app-button
+      label="Delete"
+      icon="pi pi-trash"
+      classBtn="p-button-danger"
+      (clickChange)="deleteModal()"
+    >
+    </app-button>
+    <app-button
+      label="Cancel"
+      icon="pi pi-times"
+      classBtn="p-button-secondary"
+      (click)="visible = false"
+    >
+    </app-button>
+  </ng-template>
+</p-dialog>
+
+<!-- Update Status Pop Up -->
+<p-dialog
+  header="Update Status"
+  [(visible)]="updateVisible"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+>
+  <p class="m-0 mb-4">Update Status banner</p>
+  <div>
+    <form [formGroup]="updateForm">
+      <p-toggleButton
+        formControlName="isActive"
+        [onLabel]="'Show'"
+        [offLabel]="'Hidden'"
+        [onIcon]="'pi pi-check'"
+        offIcon="pi pi-times"
+        [style]="{ width: '10em' }"
+      ></p-toggleButton>
+    </form>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <app-button label="Save" icon="pi pi-save" (clickChange)="updateModal()">
+    </app-button>
+    <app-button
+      label="Cancel"
+      icon="pi pi-times"
+      classBtn="p-button-secondary"
+      (click)="updateVisible = false"
+    >
+    </app-button>
+  </ng-template>
+</p-dialog>

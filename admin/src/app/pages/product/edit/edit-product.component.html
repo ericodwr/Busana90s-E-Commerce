@@ -1,0 +1,217 @@
+<div class="min-h-screen">
+  <div class="bg-white m-4 shadow-2 p-3 relative">
+    <div class="flex align-items-center text-xl mt-3 cursor-pointer">
+      <i
+        class="pi pi-arrow-left mr-4"
+        style="font-size: 1.2rem; color: var(--PRIMARY)"
+      ></i>
+      <h4 routerLink="/products">Edit Product</h4>
+    </div>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <div class="grid mt-6">
+        <!-- name -->
+        <div class="col-12">
+          <label for="name" class="text">
+            Name
+            <span class="text-red-500">*</span>
+          </label>
+          <input
+            id="name"
+            type="text"
+            name="name"
+            class="col-12 mt-2"
+            pInputText
+            formControlName="name"
+          />
+        </div>
+
+        <!-- category -->
+        <div class="grid col-12 align-items-end">
+          <div class="col-9">
+            <label for="category" class="text">
+              Category
+              <span class="text-red-500">*</span>
+            </label>
+            <div class="col-12 p-0 mt-2">
+              <p-dropdown
+                formControlName="categoryId"
+                [options]="categories"
+                id="category"
+                name="category"
+                optionLabel="name"
+                optionValue="id"
+                placeholder="Select a Category"
+              ></p-dropdown>
+            </div>
+          </div>
+          <div class="col-2">
+            <app-button
+              label="Add Category"
+              btnType="button"
+              (clickChange)="showDialog()"
+            ></app-button>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="grid col-12">
+          <div class="col-9">
+            <label for="description" class="text">
+              Description
+              <span class="text-red-500">*</span>
+            </label>
+            <textarea
+              rows="5"
+              cols="30"
+              pInputTextarea
+              formControlName="description"
+              class="col-12 mt-2"
+            ></textarea>
+          </div>
+          <div class="col-3">
+            <label for="size" class="text">
+              Size
+              <span class="text-red-500">*</span>
+            </label>
+            <input
+              id="size"
+              type="text"
+              name="size"
+              class="col-12 mt-2"
+              pInputText
+              formControlName="size"
+            />
+          </div>
+        </div>
+
+        <!-- Price, Size, Stock -->
+        <div class="grid col-12">
+          <!-- Price -->
+          <div class="grid col">
+            <label for="price" class="text">
+              Price
+              <span class="text-red-500">*</span>
+            </label>
+            <p-inputNumber
+              id="price"
+              name="price"
+              class="col-12 mt-2 p-0"
+              formControlName="price"
+              mode="currency"
+              currency="IDR"
+              locale="id-ID"
+            >
+            </p-inputNumber>
+          </div>
+          <div class="grid col">
+            <label for="price" class="text">
+              Status
+              <span class="text-red-500">*</span>
+            </label>
+            <p-toggleButton
+              class="col-12 mt-2 p-0"
+              formControlName="status"
+              onLabel="Show"
+              offLabel="Hide"
+            ></p-toggleButton>
+          </div>
+        </div>
+        <div class="col-12">
+          <label for="name" class="text">
+            Images
+            <span class="text-red-500">*</span>
+          </label>
+          <div class="mt-2">
+            <p-fileUpload
+              name="files"
+              url="https://www.primefaces.org/cdn/api/upload.php"
+              (onUpload)="onUploadMultiple($event)"
+              [multiple]="true"
+              accept="image/*"
+              [maxFileSize]="10000000"
+            >
+              <ng-template pTemplate="content">
+                <ul *ngIf="uploadedFiles.length">
+                  <li *ngFor="let file of uploadedFiles">
+                    {{ file.name }} - {{ file.size }} bytes
+                  </li>
+                </ul>
+              </ng-template>
+            </p-fileUpload>
+          </div>
+        </div>
+      </div>
+      <app-button
+        label="Save"
+        btnType="submit"
+        class="absolute top-0 right-0 mt-4 mr-3 save"
+      ></app-button>
+    </form>
+    <form class="col-12" [formGroup]="currentImgForm">
+      <label for="price" class="text"> Current Images </label>
+      <div class="flex flex-wrap gap-6 my-2">
+        <div
+          *ngFor="let img of data.controls; let i = index"
+          formArrayName="data"
+          class="border-solid border-primary-500 p-2 {{
+            img.get('isDeleted')?.value ? 'opacity-50' : 'opacity-100'
+          }} relative"
+        >
+          <div [formGroupName]="i">
+            <img
+              src="{{ api }}{{ img.get('img_url')?.value }}"
+              alt="{{ img.get('id')?.value }}"
+              class="w-8rem h-8rem"
+            />
+            <i
+              class="pi  {{
+                img.get('isDeleted')?.value
+                  ? 'pi-times text-gray-500'
+                  : 'pi-trash text-red-500'
+              }}  absolute bottom-0 right-0 mr-1 mb-1 cursor-pointer"
+              style="font-size: 1.5rem"
+              (click)="onDeleteCurrentImg(i)"
+            ></i>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Pop Up Modal -->
+<p-dialog
+  header="Add Category"
+  [(visible)]="visible"
+  [modal]="true"
+  [style]="{ width: '50vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  class="relative"
+>
+  <form [formGroup]="categoryForm" (ngSubmit)="onCreateCategory()">
+    <div class="grid p-10">
+      <div class="col-12">
+        <label for="name" class="text">
+          Name
+          <span class="text-red-500">*</span>
+        </label>
+        <input
+          id="name"
+          type="text"
+          name="name"
+          class="col-12 mt-2"
+          pInputText
+          formControlName="name"
+        />
+      </div>
+
+      <app-button
+        label="Create"
+        class="col-12"
+        btnType="submit"
+        [disabled]="categoryForm.invalid"
+      ></app-button>
+    </div>
+  </form>
+</p-dialog>

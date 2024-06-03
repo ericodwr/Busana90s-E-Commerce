@@ -1,0 +1,50 @@
+<nav class="bg-white h-full w-15rem m-0 p-0 z-5">
+  <div class="fixed w-15rem">
+    <div class="flex justify-content-center align-items-center my-6">
+      <img src="/assets/logo.svg" class="w-7" alt="logo" />
+    </div>
+    <div class="flex flex-column row-gap-2 align-items-start w-full">
+      <div
+        class="flex w-full hover:text-pink-600 cursor-pointer align-items-center
+         p-4 {{ dashboard }}"
+        (click)="onClick('')"
+      >
+        <i class="pi pi-home mr-2" style="font-size: 1.1rem"></i>
+        <h4>Dashboard</h4>
+      </div>
+      <div
+        class="flex w-full hover:text-pink-600 cursor-pointer p-4 {{
+          products
+        }}"
+        (click)="onClick('products')"
+      >
+        <i class="pi pi-shopping-bag mr-2" style="font-size: 1.1rem"></i>
+        <h4>Products</h4>
+      </div>
+      <div
+        class="flex w-full hover:text-pink-600 cursor-pointer p-4 {{ orders }}"
+        (click)="onClick('orders')"
+      >
+        <i class="pi pi-book mr-2" style="font-size: 1.1rem"></i>
+        <h4>Orders</h4>
+      </div>
+      <div
+        class="flex w-full hover:text-pink-600 cursor-pointer p-4 {{ banners }}"
+        (click)="onClick('banners')"
+      >
+        <i class="pi pi-flag mr-2" style="font-size: 1.1rem"></i>
+        <h4>Banners</h4>
+      </div>
+      <div
+        class="flex w-full hover:text-pink-600 cursor-pointer p-4 {{
+          promotions
+        }}"
+        (click)="onClick('promotions')"
+      >
+        <i class="pi pi-megaphone mr-2" style="font-size: 1.1rem"></i>
+        <h4>Broadcasting</h4>
+      </div>
+      <!-- <p-tieredMenu [model]="navbar"></p-tieredMenu> -->
+    </div>
+  </div>
+</nav>

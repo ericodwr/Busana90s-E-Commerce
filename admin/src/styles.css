@@ -1,0 +1,41 @@
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+  --PRIMARY: #cc509d;
+  --white: #ffffff;
+  --HOVER-PRIMARY: #914c77;
+  --INPUT-TEXT: #808080;
+}
+
+* {
+  /* box-sizing: border-box; */
+  /* margin: 0; */
+  /* padding: 0; */
+  font-family: "Montserrat", sans-serif;
+}
+
+.main {
+  background-color: #fbf9fa;
+  width: 100vw;
+  height: 100vh;
+}
+
+.primary {
+  background-color: var(--HOVER-PRIMARY);
+}
+.primary:hover {
+  background-color: var(--HOVER-PRIMARY);
+}
+
+.text {
+  color: var(--INPUT-TEXT);
+}
+
+.save button {
+  width: 11rem;
+}

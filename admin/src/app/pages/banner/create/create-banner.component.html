@@ -1,0 +1,77 @@
+<div class="min-h-screen">
+  <div class="bg-white m-4 shadow-2 p-3 relative">
+    <div class="flex align-items-center text-xl mt-3">
+      <i
+        class="pi pi-arrow-left mr-4"
+        style="font-size: 1.2rem; color: var(--PRIMARY)"
+      ></i>
+      <h4 routerLink="/banners">Add Banner</h4>
+    </div>
+
+    <form [formGroup]="testForm" (ngSubmit)="onSubmit()">
+      <div class="grid mt-6">
+        <div class="col-12">
+          <label for="title" class="text">
+            Title
+            <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            class="col-12 mt-2"
+            pInputText
+            formControlName="title"
+          />
+        </div>
+
+        <!-- Images -->
+        <div class="col-12">
+          <label for="image" class="text"
+            >Upload Image <span class="text-red-500">*</span></label
+          >
+          <div class="mt-2">
+            <p-fileUpload
+              name="file"
+              url="https://www.primefaces.org/cdn/api/upload.php"
+              (onUpload)="onUpload($event)"
+              [multiple]="false"
+              accept="image/*"
+              [maxFileSize]="1000000"
+            >
+              <ng-template pTemplate="content">
+                <ul *ngIf="uploadedFile.length">
+                  <li *ngFor="let file of uploadedFile">
+                    {{ file.name }} - {{ file.size }} bytes
+                  </li>
+                </ul>
+              </ng-template>
+            </p-fileUpload>
+          </div>
+        </div>
+
+        <!-- Status -->
+        <div class="col-12">
+          <label for="name" class="text">
+            Status
+            <span class="text-red-500">*</span>
+          </label>
+          <div class="mt-2">
+            <p-toggleButton
+              formControlName="status"
+              onLabel="Show"
+              offLabel="Hide"
+            ></p-toggleButton>
+          </div>
+        </div>
+
+        <app-button
+          label="Save"
+          btnType="submit"
+          class="absolute top-0 right-0 mt-4 mr-3 save"
+          [disabled]="testForm.invalid || isValid"
+        ></app-button>
+      </div>
+    </form>
+  </div>
+</div>

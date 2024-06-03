@@ -1,0 +1,3 @@
+interface ErrorResDto {
+  message: string;
+}
