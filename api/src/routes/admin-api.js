@@ -5,9 +5,9 @@ const { ResponseError } = require('../error/response-error.js');
 const authJwt = require('../middleware/auth-jwt.js');
 const { upload } = require('../utils/fileUpload.js');
 
-const adminController = require('../controllers/adminController.js');
+const userController = require('../controllers/userController.js');
 const categoryController = require('../controllers/categoryController.js');
-const promotionController = require('../controllers/promotionController.js');
+const broadcastController = require('../controllers/broadcastController.js');
 const bannerController = require('../controllers/bannerController.js');
 const productController = require('../controllers/productController.js');
 const orderController = require('../controllers/orderController.js');
@@ -16,14 +16,14 @@ const orderDetailsController = require('../controllers/orderDetailsController.js
 const adminRouter = new express.Router();
 
 // Login
-adminRouter.post('/api/login', adminController.login);
+adminRouter.post('/api/login', userController.login);
 
 // Middleware
 // adminRouter.use(authJwt);
 
-// Admin
-adminRouter.get('/api/admin', adminController.get);
-adminRouter.post('/api/admin', adminController.register);
+// User
+adminRouter.get('/api/admin', userController.get);
+adminRouter.post('/api/admin', userController.register);
 
 // Category
 adminRouter.get('/api/category', categoryController.getAll);
@@ -62,11 +62,11 @@ adminRouter.get('/api/order-details', orderDetailsController.getByOrderId);
 
 // Customer
 
-// Promotion
-adminRouter.get('/api/promotion', promotionController.getAll);
-adminRouter.post('/api/promotion', promotionController.create);
-adminRouter.delete('/api/promotion', promotionController.remove);
-adminRouter.get('/api/promotion/email', promotionController.sendBroadcast);
+// broadcast
+adminRouter.get('/api/broadcast', broadcastController.getAll);
+adminRouter.post('/api/broadcast', broadcastController.create);
+adminRouter.delete('/api/broadcast', broadcastController.remove);
+adminRouter.get('/api/broadcast/email', broadcastController.sendBroadcast);
 
 // Banner
 adminRouter.get('/api/banner', bannerController.getAll);

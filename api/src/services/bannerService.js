@@ -49,9 +49,10 @@ const remove = async (id) => {
 
 const editStatus = async (body) => {
   const { id, isActive } = body;
-
+  console.log(isActive);
   const banner = await Banner.findByPk(id);
 
+  console.log(banner);
   if (!banner) throw new ResponseError(404, 'banner not found!');
 
   banner.isActive = isActive;
@@ -61,4 +62,15 @@ const editStatus = async (body) => {
   return { message: 'Edit Status Successfully!' };
 };
 
-module.exports = { create, getAll, remove, editStatus };
+const getActiveBanner = async () => {
+  const banners = await Banner.findAll({
+    attributes: ['id', 'title', 'img_url'],
+    where: {
+      isActive: true,
+    },
+  });
+
+  return banners;
+};
+
+module.exports = { create, getAll, remove, editStatus, getActiveBanner };

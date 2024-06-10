@@ -14,7 +14,7 @@ module.exports = async (req, res, next) => {
   }
 
   if (token) {
-    jwt.verify(token, 'sendbylovsecret', (err, decoded) => {
+    jwt.verify(token, 'busana90s', (err, decoded) => {
       if (err) {
         // throw new ResponseError(401, err);
         res.status(401).send({

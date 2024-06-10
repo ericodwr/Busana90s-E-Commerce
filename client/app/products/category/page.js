@@ -6,8 +6,6 @@ import { capitalizeFirstLetter } from '@/app/utils/capitalize';
 import React from 'react';
 
 const CategoryPage = async ({ searchParams }) => {
-  console.log(searchParams.name);
-
   const category = await api.get(
     `/api/category/name/?name=${searchParams.name}`,
   );

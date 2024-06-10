@@ -6,9 +6,9 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
-  --primary: #cc509d;
-  --secondary: #914c77;
-  --light: #e38ac2;
+  --primary: #5079cc;
+  --secondary: #4c6391;
+  --light: #8aa8e3;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -38,4 +38,17 @@
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--light) #f1f1f1;
+}
+
+.indicator {
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 2rem;
+  border: 1px var(--light) solid;
+  margin: 0 4px 4px 4px;
+}
+
+.indicator.active {
+  color: #fff;
+  background: var(--primary);
 }

@@ -19,7 +19,7 @@ export class BannerService {
   }
 
   editStatusBanner(body: any): Observable<InsertResDto> {
-    return this.base.patch(`${BASE_URL}/banner/`, body);
+    return this.base.patch(`${BASE_URL}/banner`, body);
   }
 
   getAll() {

@@ -27,7 +27,6 @@ export class EditProductComponet implements OnInit {
         this.productId = res.get('id');
         firstValueFrom(this.productService.getById(this.productId))
           .then((res) => {
-            console.log(res);
             this.productForm.get('name')?.setValue(res.name);
             this.productForm.get('description')?.setValue(res.description);
             this.productForm.get('price')?.setValue(res.price);
@@ -180,6 +179,5 @@ export class EditProductComponet implements OnInit {
     const deletedImg = this.data.controls.filter(
       (img) => img.get('isDeleted')?.value !== false
     );
-    console.log(deletedImg.map((img) => img.value));
   }
 }

@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
   products = '';
   orders = '';
   banners = '';
-  promotions = '';
+  broadcasts = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -45,23 +45,23 @@ export class NavbarComponent implements OnInit {
 
     this.dashboard =
       this.router.url === '/dashboard'
-        ? 'border-left-2 border-pink-600 text-pink-600'
+        ? 'border-left-2 border-primary text-primary'
         : '';
     this.products =
       this.router.url === '/products'
-        ? 'border-left-2 border-pink-600 text-pink-600'
+        ? 'border-left-2 border-primary text-primary'
         : '';
     this.orders =
       this.router.url === '/orders'
-        ? 'border-left-2 border-pink-600 text-pink-600'
+        ? 'border-left-2 border-primary text-primary'
         : '';
     this.banners =
       this.router.url === '/banners'
-        ? 'border-left-2 border-pink-600 text-pink-600'
+        ? 'border-left-2 border-primary text-primary'
         : '';
-    this.promotions =
-      this.router.url === '/promotions'
-        ? 'border-left-2 border-pink-600 text-pink-600'
+    this.broadcasts =
+      this.router.url === '/broadcasts'
+        ? 'border-left-2 border-primary text-primary'
         : '';
   }
 

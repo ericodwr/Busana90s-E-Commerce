@@ -6,6 +6,8 @@ const FRONT_END_URL = process.env.FRONT_END_URL;
 const MIDTRANS_SERVER_KEY = process.env.MIDTRANS_SERVER_KEY;
 const MIDTRANS_APP_URL = process.env.MIDTRANS_APP_URL;
 const MIDTRANS_API_URL = process.env.MIDTRANS_API_URL;
+const EMAILJS_PUBLIC_KEY = process.env.EMAILJS_PUBLIC_KEY;
+const EMAILJS_PRIVATE_KEY = process.env.EMAILJS_PRIVATE_KEY;
 
 module.exports = {
   PENDING_PAYMENT,
@@ -16,4 +18,6 @@ module.exports = {
   MIDTRANS_SERVER_KEY,
   MIDTRANS_API_URL,
   SHIPPING,
+  EMAILJS_PUBLIC_KEY,
+  EMAILJS_PRIVATE_KEY,
 };

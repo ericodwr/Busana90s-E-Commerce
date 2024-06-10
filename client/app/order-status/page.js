@@ -30,7 +30,6 @@ const OrderStatusPage = () => {
         const product = await api.get(
           `/api/product/detail/?id=${order.productId}`,
         );
-        console.log(product);
         products.push(product.data);
       }
 
@@ -65,7 +64,10 @@ const OrderStatusPage = () => {
       <div>
         <h2 className="my-6">Order Details:</h2>
         {data?.order_details.map((product) => (
-          <div className="flex justify-between mx-auto w-4/5 my-12" key={product?.id}>
+          <div
+            className="flex justify-between mx-auto w-4/5 my-12"
+            key={product?.id}
+          >
             <div className="flex gap-6">
               <Image
                 src={`${API_URL}/${product?.product_imgs[0].img_url}`}

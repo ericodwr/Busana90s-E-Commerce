@@ -317,4 +317,5 @@ module.exports = {
   getOrderPaid,
   getOrderCanceled,
   getOrderShipping,
+  updateOrderData,
 };

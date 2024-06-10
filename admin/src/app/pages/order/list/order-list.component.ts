@@ -80,7 +80,6 @@ export class OrderListComponent implements OnInit {
   onOrderDetailModal(data: OrderDetailResDto[]) {
     this.orderDetailVisible = true;
     this.orderDetailData = data;
-    console.log(data);
   }
   onUpdateModal(id: string) {
     this.updateForm.get('id')?.setValue(id);

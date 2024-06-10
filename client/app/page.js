@@ -1,27 +1,22 @@
 import Image from 'next/image';
 import Card from './components/Card';
-import axios from 'axios';
 import { capitalizeFirstLetter } from './utils/capitalize';
 import Link from 'next/link';
 import ProductsByCategory from './components/ProductsByCategory';
 import { api } from './utils/api';
+import Banner from './components/Banner';
 
 export default async function Home() {
   const products = await api.get('/api/product-latest');
 
-  const categories = await api.get('/api/category');
+  const categories = await api.get('/api/category-client');
+
+  const banners = await api.get('/api/banner-active');
 
   return (
     <main className="min-h-screen">
       <section className="banner">
-        <Image
-          src={'banner.svg'}
-          width={0}
-          height={0}
-          className="w-screen h-full"
-          priority
-          alt="Banner"
-        />
+        <Banner banners={banners.data} />
       </section>
 
       <section className="container">

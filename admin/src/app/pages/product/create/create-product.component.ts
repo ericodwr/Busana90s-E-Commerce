@@ -89,7 +89,6 @@ export class CreateProductComponent implements OnInit {
     );
     firstValueFrom(this.productService.createProduct(this.formData))
       .then((res) => {
-        console.log(res);
         this.router.navigateByUrl('/products');
       })
       .catch((err) => console.log(err));

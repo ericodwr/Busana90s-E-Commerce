@@ -22,6 +22,7 @@ const remove = async (req, res, next) => {
 
 const editStatus = async (req, res, next) => {
   try {
+    console.log(req.body);
     const result = await bannerService.editStatus(req.body);
     res.json(result);
   } catch (error) {
@@ -38,4 +39,13 @@ const getAll = async (req, res, next) => {
   }
 };
 
-module.exports = { create, getAll, remove, editStatus };
+const getActiveBanners = async (req, res, next) => {
+  try {
+    const result = await bannerService.getActiveBanner();
+    res.json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { create, getAll, remove, editStatus, getActiveBanners };

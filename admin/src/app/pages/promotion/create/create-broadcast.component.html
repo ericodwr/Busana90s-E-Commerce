@@ -1,0 +1,67 @@
+<div class="min-h-screen">
+  <div class="bg-white m-4 shadow-2 p-3 relative">
+    <div class="flex align-items-center text-xl mt-3">
+      <i
+        class="pi pi-arrow-left mr-4 cursor-pointer"
+        style="font-size: 1.2rem; color: var(--PRIMARY)"
+        routerLink="/broadcasts"
+      ></i>
+      <h4>Add Broadcasts</h4>
+    </div>
+
+    <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+      <div class="grid mt-6">
+        <div class="col-12">
+          <label for="subject" class="text">
+            Subject
+            <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            id="subject"
+            name="subject"
+            class="col-12 mt-2"
+            pInputText
+            formControlName="subject"
+          />
+        </div>
+        <div class="col-12">
+          <label for="title" class="text">
+            Title
+            <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            class="col-12 mt-2"
+            pInputText
+            formControlName="title"
+          />
+        </div>
+
+        <div class="col-12">
+          <label for="description" class="text">
+            Description
+            <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            id="description"
+            name="description"
+            class="col-12 mt-2"
+            pInputText
+            formControlName="description"
+          />
+        </div>
+
+        <app-button
+          label="Save"
+          btnType="submit"
+          class="absolute top-0 right-0 mt-4 mr-3 save"
+          [disabled]="createForm.invalid"
+        ></app-button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -5,7 +5,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { BaseModule } from './components/base/base.module';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './pages/login/login.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
 import { ButtonComponent } from './components/button/button.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -37,11 +37,11 @@ const routes: Routes = [
     canMatch: [authNonLoginValidation],
   },
   {
-    path: 'promotions',
+    path: 'broadcasts',
     component: BaseComponent,
     loadChildren: () =>
-      import('./pages/promotion/promotion.module').then(
-        (u) => u.PromotionModule
+      import('./pages/promotion/broadcast.module').then(
+        (u) => u.BroadcastModule
       ),
     canMatch: [authNonLoginValidation],
   },

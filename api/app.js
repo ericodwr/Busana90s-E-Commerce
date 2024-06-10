@@ -18,8 +18,8 @@ app.use(cors());
 app.use(express.static('public'));
 app.use('/images', express.static('images'));
 
-app.use(shipmentRouter);
 app.use(publicRouter);
+app.use(shipmentRouter);
 app.use(excelRouter);
 app.use(adminRouter);
 

@@ -69,7 +69,6 @@ export class ListBannerComponent implements OnInit {
   // Update Banner Functions
   onUpdateModal(id: string, isActive: boolean) {
     if (id) {
-      console.log(id);
       this.updateForm.controls['id'].setValue(id);
       this.updateForm.controls['isActive'].setValue(isActive);
       this.updateVisible = true;
