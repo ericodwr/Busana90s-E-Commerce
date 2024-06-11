@@ -31,17 +31,15 @@ const getAll = async () => {
   const banners = await Banner.findAll({
     attributes: ['id', 'title', 'img_url', 'isActive'],
   });
-
   return banners;
 };
 
 const remove = async (id) => {
   const banner = await Banner.findByPk(id);
-
   if (!banner) throw new ResponseError(404, 'banner not found!');
 
   const img_url = banner.img_url.split('\\');
-  clearImage(img_url[1]);
+  clearImage(banner.img_url);
   await banner.destroy();
 
   return { message: 'Delete banner successfully!' };

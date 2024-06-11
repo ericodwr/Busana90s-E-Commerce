@@ -41,6 +41,7 @@ export class OrderListComponent implements OnInit {
     firstValueFrom(this.orderService.getAll())
       .then((res) => {
         this.orders = res;
+        console.log(res);
 
         for (const order of this.orders) {
           firstValueFrom(this.orderDetailsService.getByOrderId(order.id))

@@ -29,6 +29,7 @@ const upload = multer({ storage: fileStorage, fileFilter });
 
 const clearImage = (filePathImg) => {
   const filePath = path.join(__dirname, '..', '..', 'images', filePathImg);
+  console.log(filePath);
   fs.unlink(filePath, (err) => {});
 };
 

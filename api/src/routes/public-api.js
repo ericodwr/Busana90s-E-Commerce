@@ -6,7 +6,6 @@ const productController = require('../controllers/productController.js');
 const orderController = require('../controllers/orderController.js');
 const bannerController = require('../controllers/bannerController.js');
 const categoryController = require('../controllers/categoryController.js');
-const orderController = require('../controllers/orderController.js');
 
 // Product
 publicRouter.get('/api/product', productController.getAllClient);
@@ -30,7 +29,7 @@ publicRouter.get('/api/banner-active', bannerController.getActiveBanners);
 
 // Order
 publicRouter.post(
-  '/api/order/transaction/controller',
+  '/api/order/transaction/notification',
   orderController.trxNotif,
 );
 

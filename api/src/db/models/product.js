@@ -10,15 +10,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate({ Category, Product_Imgs, Order_Details }) {
       this.belongsTo(Category, { foreignKey: 'categoryId', as: 'categories' });
       this.hasMany(Product_Imgs, {
+        foreignKey: 'productId',
         as: 'product_imgs',
-        foreignKey: 'productId',
-        onDelete: 'cascade',
-        hooks: true,
       });
-      this.hasOne(Order_Details, {
-        as: 'order_details',
-        foreignKey: 'productId',
-      });
+      // this.hasOne(Order_Details, {
+      //   as: 'order_details',
+      //   foreignKey: 'productId',
+      // });
     }
   }
   Product.init(

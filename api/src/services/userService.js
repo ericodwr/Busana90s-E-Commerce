@@ -13,7 +13,7 @@ const register = async (request) => {
 
   let newUser;
 
-  await User.build({
+  User.build({
     id: v4(),
     username,
     password: hashPassword,
@@ -24,8 +24,6 @@ const register = async (request) => {
       newUser = res;
     })
     .catch((err) => console.log(err));
-
-  console.log(newUser.id);
 
   return {
     data: newUser,

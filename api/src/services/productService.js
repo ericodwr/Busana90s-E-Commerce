@@ -102,7 +102,7 @@ const updateProduct = async (req) => {
     for (const img of deletedImages) {
       const imgProduct = await Product_Imgs.findByPk(img.id);
       const img_url = imgProduct.img_url.split('\\');
-      clearImage(img_url[1]);
+      clearImage(imgProduct.img_url);
       await imgProduct.destroy();
     }
   }
@@ -125,7 +125,7 @@ const remove = async (id) => {
 
   for (const images of product_imgs) {
     const imageUrl = images.img_url.split('\\');
-    clearImage(imageUrl[1]);
+    clearImage(images.img_url);
   }
   await product.destroy();
 
@@ -184,7 +184,6 @@ const getByCategory = async (name) => {
   const products = await Category.findAll({
     where: {
       name,
-      status: true,
     },
     include: 'products',
   });

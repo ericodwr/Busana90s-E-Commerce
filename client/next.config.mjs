@@ -13,6 +13,11 @@ const nextConfig = {
         protocol: 'https',
         pathname: '**',
       },
+      {
+        hostname: 'ergowork.my.id',
+        protocol: 'http',
+        pathname: '**',
+      },
     ],
   },
 };

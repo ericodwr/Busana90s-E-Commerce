@@ -5,7 +5,7 @@
     </div>
     <div class="flex flex-column row-gap-2 align-items-start w-full">
       <div
-        class="flex w-full hover:text-pink-600 cursor-pointer align-items-center
+        class="flex w-full hover:text-blue-800 cursor-pointer align-items-center
          p-4 {{ dashboard }}"
         (click)="onClick('')"
       >
@@ -13,7 +13,7 @@
         <h4>Dashboard</h4>
       </div>
       <div
-        class="flex w-full hover:text-pink-600 cursor-pointer p-4 {{
+        class="flex w-full hover:text-blue-800 cursor-pointer p-4 {{
           products
         }}"
         (click)="onClick('products')"
@@ -22,21 +22,21 @@
         <h4>Products</h4>
       </div>
       <div
-        class="flex w-full hover:text-pink-600 cursor-pointer p-4 {{ orders }}"
+        class="flex w-full hover:text-blue-800 cursor-pointer p-4 {{ orders }}"
         (click)="onClick('orders')"
       >
         <i class="pi pi-book mr-2" style="font-size: 1.1rem"></i>
         <h4>Orders</h4>
       </div>
       <div
-        class="flex w-full hover:text-pink-600 cursor-pointer p-4 {{ banners }}"
+        class="flex w-full hover:text-blue-800 cursor-pointer p-4 {{ banners }}"
         (click)="onClick('banners')"
       >
         <i class="pi pi-flag mr-2" style="font-size: 1.1rem"></i>
         <h4>Banners</h4>
       </div>
       <div
-        class="flex w-full hover:text-pink-600 cursor-pointer p-4 {{
+        class="flex w-full hover:text-blue-800 cursor-pointer p-4 {{
           broadcasts
         }}"
         (click)="onClick('broadcasts')"
@@ -44,6 +44,13 @@
         <i class="pi pi-megaphone mr-2" style="font-size: 1.1rem"></i>
         <h4>Broadcasts</h4>
       </div>
+    </div>
+    <div
+      class="flex w-full hover:text-red-800 cursor-pointer p-4 mt-8"
+      (click)="onLogout()"
+    >
+      <i class="pi pi-sign-out mr-2" style="font-size: 1.1rem"></i>
+      <h4>Logout</h4>
     </div>
   </div>
 </nav>
