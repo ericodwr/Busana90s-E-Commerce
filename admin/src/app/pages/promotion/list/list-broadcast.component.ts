@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { BroadcastResDto } from 'src/app/dto/broadcast/broadcastResDto';
+import { LoginResDto } from 'src/app/dto/login/login.res.dto';
+import { AuthService } from 'src/app/services/auth.service';
 import { BroadcastService } from 'src/app/services/broadcast.service';
 
 @Component({
@@ -10,7 +12,10 @@ import { BroadcastService } from 'src/app/services/broadcast.service';
 export class ListBroadcastComponent implements OnInit {
   loading: boolean = false;
 
-  constructor(private broadcastService: BroadcastService) {}
+  constructor(
+    private broadcastService: BroadcastService,
+    private authService: AuthService
+  ) {}
 
   getData() {
     firstValueFrom(this.broadcastService.getAllBroadcast())
@@ -18,6 +23,9 @@ export class ListBroadcastComponent implements OnInit {
         this.broadcasts = res;
       })
       .catch((err) => console.log(err));
+
+    this.profile = this.authService.getProfile();
+    console.log(this.profile);
   }
 
   ngOnInit(): void {
@@ -28,8 +36,15 @@ export class ListBroadcastComponent implements OnInit {
   broadcasts: BroadcastResDto[] = [];
   visible: boolean = false;
   id: string = '';
+  profile!: LoginResDto | null;
 
   // Functions
+
+  // is Admin
+  get isAdmin() {
+    return this.profile?.username === 'admin';
+  }
+
   onDeleteModal(id: string) {
     this.visible = true;
     this.id = id;

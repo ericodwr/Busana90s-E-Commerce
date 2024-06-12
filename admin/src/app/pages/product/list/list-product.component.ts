@@ -8,6 +8,8 @@ import { ProductService } from 'src/app/services/product.service';
 
 import { BASE_URL, BASE_URL_IMG } from 'src/app/constant/api.constant';
 import { ConfirmationService } from 'primeng/api';
+import { LoginResDto } from 'src/app/dto/login/login.res.dto';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'list-product',
@@ -16,6 +18,7 @@ import { ConfirmationService } from 'primeng/api';
   providers: [ConfirmationService],
 })
 export class ListProductComponent implements OnInit {
+  profile!: LoginResDto | null;
   categories: CategoryResDto[] = [];
   products: ProductResDto[] = [];
   url = BASE_URL_IMG;
@@ -26,7 +29,8 @@ export class ListProductComponent implements OnInit {
   constructor(
     private title: Title,
     private categoryService: CategoryService,
-    private productService: ProductService
+    private productService: ProductService,
+    private authService: AuthService
   ) {
     title.setTitle('List Product');
   }
@@ -36,11 +40,17 @@ export class ListProductComponent implements OnInit {
   }
 
   getData() {
+    this.profile = this.authService.getProfile();
     firstValueFrom(this.productService.getAllProduct())
       .then((res) => {
         this.products = res;
       })
       .catch((err) => console.log(err));
+  }
+
+  // is Admin
+  get isAdmin() {
+    return this.profile?.username === 'admin';
   }
 
   getExcelData() {

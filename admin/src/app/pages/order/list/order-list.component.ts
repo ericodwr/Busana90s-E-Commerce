@@ -3,9 +3,11 @@ import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { BASE_URL } from 'src/app/constant/api.constant';
 import { CustomerResDto } from 'src/app/dto/customer/CustomerResDto';
+import { LoginResDto } from 'src/app/dto/login/login.res.dto';
 import { OrderDetailResDto } from 'src/app/dto/order/OrderDetailResDto';
 import { OrderResDto } from 'src/app/dto/order/OrderResDto';
 import { ShipmentResDto } from 'src/app/dto/shipment/ShipmentResDto';
+import { AuthService } from 'src/app/services/auth.service';
 import { OrderDetailsService } from 'src/app/services/order.details.service';
 import { OrderService } from 'src/app/services/order.service';
 
@@ -17,11 +19,13 @@ export class OrderListComponent implements OnInit {
   constructor(
     private orderService: OrderService,
     private orderDetailsService: OrderDetailsService,
-    private fb: NonNullableFormBuilder
+    private fb: NonNullableFormBuilder,
+    private authService: AuthService
   ) {}
 
   exportExcel = `${BASE_URL}/export/orders`;
 
+  profile!: LoginResDto | null;
   orders: OrderResDto[] = [];
   customerVisible: boolean = false;
   shipmentVisible: boolean = false;
@@ -38,6 +42,7 @@ export class OrderListComponent implements OnInit {
   });
 
   getData() {
+    this.profile = this.authService.getProfile();
     firstValueFrom(this.orderService.getAll())
       .then((res) => {
         this.orders = res;
@@ -56,6 +61,11 @@ export class OrderListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData();
+  }
+
+  // is Admin
+  get isAdmin() {
+    return this.profile?.username === 'admin';
   }
 
   getSeverity(status: string) {

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
 import { firstValueFrom } from 'rxjs';
 import { BASE_URL_IMG } from 'src/app/constant/api.constant';
+import { LoginResDto } from 'src/app/dto/login/login.res.dto';
+import { AuthService } from 'src/app/services/auth.service';
 import { BannerService } from 'src/app/services/banner.service';
 
 @Component({
@@ -11,11 +13,13 @@ import { BannerService } from 'src/app/services/banner.service';
 export class ListBannerComponent implements OnInit {
   constructor(
     private bannerService: BannerService,
-    private fb: NonNullableFormBuilder
+    private fb: NonNullableFormBuilder,
+    private authService: AuthService
   ) {}
 
   // Variables
   banners: any = [];
+  profile!: LoginResDto | null;
   visible = false;
   updateVisible = false;
   url = BASE_URL_IMG;
@@ -26,6 +30,7 @@ export class ListBannerComponent implements OnInit {
   });
 
   getData() {
+    this.profile = this.authService.getProfile();
     firstValueFrom(this.bannerService.getAll())
       .then((res) => {
         this.banners = res;
@@ -35,6 +40,11 @@ export class ListBannerComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData();
+  }
+
+  // is Admin
+  get isAdmin() {
+    return this.profile?.username === 'admin';
   }
 
   getSeverity(status: boolean) {

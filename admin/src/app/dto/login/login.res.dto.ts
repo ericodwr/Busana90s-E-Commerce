@@ -4,5 +4,6 @@ export interface LoginResDto {
   fullName: string;
   roleCode: string;
   roleName: string;
+  username: string;
   photoId: number;
 }

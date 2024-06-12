@@ -6,7 +6,7 @@
       <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-between">
           Banners
-          <div>
+          <div *ngIf="isAdmin">
             <app-button
               label="Create"
               routerLink="/banners/create"
@@ -21,7 +21,7 @@
           <th>Image</th>
           <th>Title</th>
           <th>Status</th>
-          <th>Action</th>
+          <th *ngIf="isAdmin">Action</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-banner let-rowIndex="rowIndex">
@@ -42,7 +42,7 @@
               [severity]="getSeverity(banner.isActive)"
             ></p-tag>
           </td>
-          <td>
+          <td *ngIf="isAdmin">
             <div class="flex justify-content-between w-5">
               <i
                 class="pi pi-pencil cursor-pointer"

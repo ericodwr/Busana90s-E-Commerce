@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { CANCELED, PAID, SHIPPING } from 'src/app/constant/contant';
+import { LoginResDto } from 'src/app/dto/login/login.res.dto';
+import { AuthService } from 'src/app/services/auth.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { OrderService } from 'src/app/services/order.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -13,10 +15,12 @@ export class DashboardComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private orderService: OrderService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
+    this.profile = this.authService.getProfile();
     firstValueFrom(this.productService.getAllProduct())
       .then((res) => {
         this.totalProducts = res.length;
@@ -39,6 +43,8 @@ export class DashboardComponent implements OnInit {
         this.canceledOrder = res.filter((o) => o.status == CANCELED).length;
       })
       .catch((err) => console.log(err));
+
+    console.log(this.profile);
   }
 
   // Variables
@@ -50,4 +56,5 @@ export class DashboardComponent implements OnInit {
   shippingOrder!: number;
   paidOrder!: number;
   canceledOrder!: number;
+  profile!: LoginResDto | null;
 }

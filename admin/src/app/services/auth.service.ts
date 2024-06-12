@@ -11,7 +11,6 @@ export class AuthService {
     if (data) {
       return JSON.parse(data);
     }
-
     return null;
   }
 }

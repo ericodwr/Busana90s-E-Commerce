@@ -15,6 +15,7 @@
               ></app-button>
             </a>
             <app-button
+              *ngIf="isAdmin"
               label="Create"
               routerLink="/products/create"
               icon="pi pi-plus"
@@ -31,7 +32,7 @@
           <th>Category</th>
           <th>Price</th>
           <th>Status</th>
-          <th>Action</th>
+          <th *ngIf="isAdmin">Action</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
@@ -55,7 +56,7 @@
               [severity]="getSeverity(product.status)"
             ></p-tag>
           </td>
-          <td>
+          <td *ngIf="isAdmin">
             <div class="flex justify-content-between w-5">
               <i
                 class="pi pi-pencil cursor-pointer"

@@ -6,7 +6,7 @@
       <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-between">
           Broadcasts
-          <div>
+          <div *ngIf="isAdmin">
             <app-button
               label="Create"
               routerLink="/broadcasts/create"
@@ -21,8 +21,8 @@
           <th>Subject</th>
           <th>Title</th>
           <th>Description</th>
-          <th>Broadcast</th>
-          <th>Action</th>
+          <th *ngIf="isAdmin">Broadcast</th>
+          <th *ngIf="isAdmin">Action</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-broadcast let-rowIndex="rowIndex">
@@ -31,14 +31,14 @@
           <td>{{ broadcast.subject }}</td>
           <td>{{ broadcast.title }}</td>
           <td>{{ broadcast.description }}</td>
-          <td>
+          <td *ngIf="isAdmin">
             <app-button
               label="Send"
               [loading]="loading"
               (clickChange)="sendEmail(broadcast)"
             ></app-button>
           </td>
-          <td>
+          <td *ngIf="isAdmin">
             <div class="flex justify-content-between w-5">
               <i
                 (click)="onDeleteModal(broadcast.id)"

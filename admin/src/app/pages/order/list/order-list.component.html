@@ -25,7 +25,7 @@
           <th>Order Details</th>
           <th>Customer</th>
           <th>Shipment</th>
-          <th>Action</th>
+          <th *ngIf="isAdmin">Action</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-order let-rowIndex="rowIndex">
@@ -67,7 +67,7 @@
             >
             </app-button>
           </td>
-          <td>
+          <td *ngIf="isAdmin">
             <app-button
               label="Add Receipt Number"
               classBtn="mr-4 p-button-secondary"
