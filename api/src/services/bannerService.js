@@ -38,7 +38,7 @@ const remove = async (id) => {
   const banner = await Banner.findByPk(id);
   if (!banner) throw new ResponseError(404, 'banner not found!');
 
-  const img_url = banner.img_url.split('\\');
+  // const img_url = banner.img_url.split('\\');
   clearImage(banner.img_url);
   await banner.destroy();
 
