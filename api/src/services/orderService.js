@@ -264,6 +264,7 @@ const updateReceiptNumber = async (req) => {
   });
 
   order.status = SHIPPING;
+  await order.save();
 
   // template_eiuy0yt
 
