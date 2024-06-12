@@ -1,2 +1,2 @@
-export const BASE_URL = 'http://ergowork.my.id/api';
-export const BASE_URL_IMG = 'http://ergowork.my.id/';
+export const BASE_URL = 'https://ergowork.my.id/api';
+export const BASE_URL_IMG = 'https://ergowork.my.id/';
