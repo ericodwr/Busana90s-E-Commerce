@@ -60,7 +60,7 @@ const Navbar = () => {
                           width={0}
                           height={0}
                           src="/logo.svg"
-                          alt="SendbyLov Logo"
+                          alt="Busana90s Logo"
                           priority
                         />
                       </Link>
@@ -70,7 +70,7 @@ const Navbar = () => {
                         width={0}
                         height={0}
                         src="/logo.svg"
-                        alt="SendbyLov Logo"
+                        alt="Busana90s Logo"
                         priority
                       />
                     )}
