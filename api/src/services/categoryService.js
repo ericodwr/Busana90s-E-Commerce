@@ -1,6 +1,6 @@
 const { v4 } = require('uuid');
 
-const { Admin, Category } = require('../db/models/index.js');
+const { Category } = require('../db/models/index.js');
 const { ResponseError } = require('../error/response-error.js');
 
 const create = async (body, headers) => {

@@ -109,9 +109,6 @@ excelRouter.get('/api/export/orders', async (req, res, next) => {
         detail = newDetail;
         order.order_details = newDetail;
       }
-
-      // console.log(detail);
-      // order.order_details = detail;
     }
 
     for (const order of orders) {

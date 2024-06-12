@@ -19,6 +19,7 @@ publicRouter.get('/api/product/detail', productController.getByIdForOrder);
 
 // Category
 publicRouter.get('/api/category-client', categoryController.getAll);
+publicRouter.get('/api/category/name', categoryController.getByName);
 
 // Order
 publicRouter.post('/api/order', orderController.create);
@@ -32,5 +33,9 @@ publicRouter.post(
   '/api/order/transaction/notification',
   orderController.trxNotif,
 );
+
+publicRouter.get('/testjwt', (req, res, next) => {
+  res.json({ message: 'Success!' });
+});
 
 module.exports = { publicRouter };

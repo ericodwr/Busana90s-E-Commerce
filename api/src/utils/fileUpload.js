@@ -28,8 +28,7 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({ storage: fileStorage, fileFilter });
 
 const clearImage = (filePathImg) => {
-  const filePath = path.join(__dirname, '..', '..', 'images', filePathImg);
-  console.log(filePath);
+  const filePath = path.join(__dirname, '..', '..', filePathImg);
   fs.unlink(filePath, (err) => {});
 };
 

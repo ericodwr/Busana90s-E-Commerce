@@ -1,7 +1,5 @@
 const express = require('express');
 
-const { Admin } = require('../db/models/index.js');
-const { ResponseError } = require('../error/response-error.js');
 const authJwt = require('../middleware/auth-jwt.js');
 const { upload } = require('../utils/fileUpload.js');
 
@@ -19,7 +17,7 @@ const adminRouter = new express.Router();
 adminRouter.post('/api/login', userController.login);
 
 // Middleware
-// adminRouter.use(authJwt);
+adminRouter.use(authJwt);
 
 // User
 adminRouter.get('/api/admin', userController.get);
@@ -27,7 +25,6 @@ adminRouter.post('/api/admin', userController.register);
 
 // Category
 adminRouter.get('/api/category', categoryController.getAll);
-adminRouter.get('/api/category/name', categoryController.getByName);
 adminRouter.post('/api/category', categoryController.create);
 adminRouter.patch('/api/category', categoryController.update);
 adminRouter.delete('/api/category', categoryController.remove);
@@ -75,16 +72,5 @@ adminRouter.patch('/api/banner', bannerController.editStatus);
 adminRouter.post('/api/banner', upload.single('file'), bannerController.create);
 
 // Shipment
-
-// adminRouter.post('/testing', upload.single('file'), (req, res, next) => {
-//   // upload.single(req.body);
-//   console.log(req.file);
-//   console.log(req.body);
-//   res.json({ message: 'success!' });
-// });
-
-adminRouter.get('/testjwt', (req, res, next) => {
-  res.json({ message: 'Success!' });
-});
 
 module.exports = { adminRouter };

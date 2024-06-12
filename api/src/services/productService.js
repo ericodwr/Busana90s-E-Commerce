@@ -1,9 +1,4 @@
-const {
-  Product,
-  Product_Imgs,
-  Admin,
-  Category,
-} = require('../db/models/index.js');
+const { Product, Product_Imgs, Category } = require('../db/models/index.js');
 const { v4 } = require('uuid');
 const { ResponseError } = require('../error/response-error.js');
 const { clearImage } = require('../utils/fileUpload.js');

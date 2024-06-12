@@ -22,7 +22,6 @@ const remove = async (req, res, next) => {
 
 const editStatus = async (req, res, next) => {
   try {
-    console.log(req.body);
     const result = await bannerService.editStatus(req.body);
     res.json(result);
   } catch (error) {
