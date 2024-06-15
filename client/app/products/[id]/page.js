@@ -4,16 +4,15 @@ import ImagesProductDetail from '@/app/components/ImagesProductDetail';
 import ProductsByCategory from '@/app/components/ProductsByCategory';
 import { api } from '@/app/utils/api';
 import { capitalizeFirstLetter } from '@/app/utils/capitalize';
-import axios from 'axios';
 import Link from 'next/link';
 import React from 'react';
-import { toast } from 'react-toastify';
+
+export const dynamic = 'force-dynamic';
 
 const ProductDetailPage = async ({ params }) => {
   const data = await api.get(`/api/product/detail/?id=${params.id}`);
 
   const products = await api.get('/api/product-latest');
-
 
   return (
     <>

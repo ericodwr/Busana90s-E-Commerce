@@ -5,6 +5,8 @@ import { api } from '@/app/utils/api';
 import { capitalizeFirstLetter } from '@/app/utils/capitalize';
 import React from 'react';
 
+export const dynamic = 'force-dynamic';
+
 const CategoryPage = async ({ searchParams }) => {
   const category = await api.get(
     `/api/category/name/?name=${searchParams.name}`,

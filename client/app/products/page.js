@@ -2,6 +2,8 @@ import React from 'react';
 import Card from '../components/Card';
 import { api } from '../utils/api';
 
+export const dynamic = 'force-dynamic';
+
 const ProductsPage = async () => {
   const products = await api.get(`/api/product`);
 
