@@ -1,5 +1,3 @@
-'use server';
-
 import Card from '@/app/components/Card';
 import { api } from '@/app/utils/api';
 import { capitalizeFirstLetter } from '@/app/utils/capitalize';
