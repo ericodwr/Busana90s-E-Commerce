@@ -161,12 +161,13 @@ const CheckoutPage = () => {
         onSuccess: function (result) {
           changeSnapShow(false);
           handleCheckout();
-          window.location(result.finish_redirect_url);
+          window.open(result.finish_redirect_url);
           router.push('/');
         },
         onPending: function (result) {
           handleCheckout();
-          window.location(result.finish_redirect_url);
+          window.open(result.finish_redirect_url);
+          router.push('/');
           changeSnapShow(false);
         },
         onClose: function () {
