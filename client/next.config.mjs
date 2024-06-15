@@ -18,6 +18,11 @@ const nextConfig = {
         protocol: 'https',
         pathname: '**',
       },
+      {
+        hostname: 'app.sandbox.midtrans.com',
+        protocol: 'https',
+        pathname: '**',
+      },
     ],
   },
 };

@@ -17,7 +17,7 @@ const adminRouter = new express.Router();
 adminRouter.post('/api/login', userController.login);
 
 // Middleware
-adminRouter.use(authJwt);
+// adminRouter.use(authJwt);
 
 // User
 adminRouter.get('/api/admin', userController.get);
