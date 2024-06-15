@@ -9,11 +9,6 @@ const nextConfig = {
         pathname: '**',
       },
       {
-        hostname: 'images.unsplash.com',
-        protocol: 'https',
-        pathname: '**',
-      },
-      {
         hostname: 'ergowork.my.id',
         protocol: 'https',
         pathname: '**',

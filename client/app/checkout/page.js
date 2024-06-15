@@ -159,11 +159,13 @@ const CheckoutPage = () => {
       changeSnapShow(true);
       snapEmbed(data.data.snap_token, 'snap-container', {
         onSuccess: function (result) {
+          console.log(result);
           changeSnapShow(false);
           handleCheckout();
           router.push('/');
         },
         onPending: function (result) {
+          console.log(result);
           changeSnapShow(false);
         },
         onClose: function () {

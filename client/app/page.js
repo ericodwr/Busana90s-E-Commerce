@@ -1,10 +1,11 @@
-import Image from 'next/image';
 import Card from './components/Card';
 import { capitalizeFirstLetter } from './utils/capitalize';
 import Link from 'next/link';
 import ProductsByCategory from './components/ProductsByCategory';
 import { api } from './utils/api';
 import Banner from './components/Banner';
+
+export const dynamic = 'force-dynamic';
 
 export default async function Home() {
   const products = await api.get('/api/product-latest');
