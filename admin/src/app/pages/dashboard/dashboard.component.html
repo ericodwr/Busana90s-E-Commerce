@@ -60,5 +60,26 @@
         <h3>{{ canceledOrder }}</h3>
       </div>
     </div>
+
+    <!-- Chart -->
+    <div class="p-5">
+      <h2 class="my-3">
+        Total Income in {{ forms.get("formYear")?.value }}:
+        {{ totalOrderIncome | currency : "Rp " }}
+      </h2>
+      <div>
+        <form [formGroup]="forms">
+          <p-dropdown
+            formControlName="formYear"
+            [options]="years"
+            optionLabel="year"
+            optionValue="year"
+            placeholder="Select Year"
+            (onChange)="check()"
+          ></p-dropdown>
+        </form>
+      </div>
+      <p-chart type="line" [data]="data" [options]="options"></p-chart>
+    </div>
   </div>
 </div>

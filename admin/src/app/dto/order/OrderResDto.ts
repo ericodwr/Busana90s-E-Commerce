@@ -14,4 +14,6 @@ export interface OrderResDto {
   customerId: string;
   customers: CustomerResDto;
   shipments: ShipmentResDto;
+  createdAt: string;
+  updatedAt: string;
 }

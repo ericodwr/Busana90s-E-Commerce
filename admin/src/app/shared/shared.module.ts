@@ -18,6 +18,7 @@ import { TieredMenuModule } from 'primeng/tieredmenu';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     InputTextareaModule,
     ToggleButtonModule,
     ConfirmDialogModule,
+    ChartModule,
   ],
   exports: [
     MenubarModule,
@@ -61,6 +63,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     InputTextareaModule,
     ToggleButtonModule,
     ConfirmDialogModule,
+    ChartModule,
   ],
 })
 export class SharedModule {}

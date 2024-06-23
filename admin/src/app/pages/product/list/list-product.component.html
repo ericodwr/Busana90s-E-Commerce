@@ -49,7 +49,7 @@
           </td>
           <td>{{ product.size.toUpperCase() }}</td>
           <td>{{ product.categories.name }}</td>
-          <td>Rp. {{ product.price }}</td>
+          <td>{{ product.price | currency : "Rp " }}</td>
           <td>
             <p-tag
               [value]="product.status ? 'Active' : 'Inactive'"

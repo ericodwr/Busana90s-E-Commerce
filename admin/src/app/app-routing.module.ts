@@ -6,6 +6,7 @@ import { BaseModule } from './components/base/base.module';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '@shared/shared.module';
 import { ButtonComponent } from './components/button/button.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -73,13 +74,14 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, DashboardComponent],
   imports: [
+    SharedModule,
     RouterModule.forRoot(routes),
     BaseModule,
     CommonModule,
     ReactiveFormsModule,
-    SharedModule,
+    HttpClientModule,
     ButtonComponent,
     NotFoundComponent,
   ],

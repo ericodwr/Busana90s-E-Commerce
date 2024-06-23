@@ -41,7 +41,7 @@
             <p>{{ order.payment_method ? order.payment_method : "Not Pay" }}</p>
           </td>
           <td>
-            <p>Rp. {{ order.total }}</p>
+            <p>{{ order.total | currency : "Rp " }}</p>
           </td>
           <td>
             <p>{{ order.order_details.length }}</p>
