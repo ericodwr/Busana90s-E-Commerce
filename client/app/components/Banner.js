@@ -32,7 +32,7 @@ const Banner = ({ banners }) => {
       >
         {banners.map((banner) => (
           <div
-            className="each-slide-effect h-[650px] relative bg-cover"
+            className="each-slide-effect h-[73vh] relative bg-cover"
             key={banner.id}
           >
             <img
