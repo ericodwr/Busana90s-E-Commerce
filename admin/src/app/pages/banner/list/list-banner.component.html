@@ -2,7 +2,13 @@
   <h1>banner list</h1>
 
   <div class="card p-6">
-    <p-table [value]="banners" [tableStyle]="{ 'min-width': '60rem' }">
+    <p-table
+      [value]="banners"
+      [tableStyle]="{ 'min-width': '60rem' }"
+      [rows]="10"
+      [paginator]="true"
+      [rowsPerPageOptions]="[10, 20, 30]"
+    >
       <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-between">
           Banners

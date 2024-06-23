@@ -2,7 +2,13 @@
   <h1>Product List</h1>
 
   <div class="card p-6">
-    <p-table [value]="products" [tableStyle]="{ 'min-width': '60rem' }">
+    <p-table
+      [value]="products"
+      [tableStyle]="{ 'min-width': '60rem' }"
+      [rows]="10"
+      [paginator]="true"
+      [rowsPerPageOptions]="[10, 20, 30]"
+    >
       <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-between">
           Products
@@ -26,12 +32,14 @@
       <ng-template pTemplate="header">
         <tr>
           <th>No.</th>
-          <th>Name</th>
+          <th pSortableColumn="name">Name <p-sortIcon field="name" /></th>
           <th>Image</th>
           <th>Size</th>
-          <th>Category</th>
-          <th>Price</th>
-          <th>Status</th>
+          <th pSortableColumn="categories.name">
+            Category <p-sortIcon field="category" />
+          </th>
+          <th pSortableColumn="price">Price <p-sortIcon field="price" /></th>
+          <th pSortableColumn="status">Status <p-sortIcon field="status" /></th>
           <th *ngIf="isAdmin">Action</th>
         </tr>
       </ng-template>

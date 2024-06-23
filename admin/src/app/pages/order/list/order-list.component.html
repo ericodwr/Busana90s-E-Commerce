@@ -1,6 +1,12 @@
 <div class="min-h-screen">
   <div class="card p-6">
-    <p-table [value]="orders" [tableStyle]="{ 'min-width': '60rem' }">
+    <p-table
+      [value]="orders"
+      [tableStyle]="{ 'min-width': '60rem' }"
+      [rows]="10"
+      [paginator]="true"
+      [rowsPerPageOptions]="[10, 20, 30]"
+    >
       <ng-template pTemplate="caption">
         <div class="flex align-items-center justify-content-between">
           Orders
@@ -18,9 +24,11 @@
       <ng-template pTemplate="header">
         <tr>
           <th>No.</th>
-          <th>Status</th>
+          <th pSortableColumn="status">Status <p-sortIcon field="status" /></th>
           <th>Payment Type</th>
-          <th>Total Price</th>
+          <th pSortableColumn="total">
+            Total Price <p-sortIcon field="total price" />
+          </th>
           <th>Total Product</th>
           <th>Order Details</th>
           <th>Customer</th>
@@ -201,7 +209,7 @@
     <div *ngFor="let data of orderDetailData" class="grid col-12">
       <p class="col-4">1x {{ data.products.name }}</p>
       <p class="col-4">{{ data.products.size }}</p>
-      <p class="col-4">Rp. {{ data.products.price }}</p>
+      <p class="col-4">{{ data.products.price | currency : "Rp" }}</p>
     </div>
   </div>
 

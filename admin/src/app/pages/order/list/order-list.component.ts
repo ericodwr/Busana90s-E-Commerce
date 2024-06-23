@@ -10,6 +10,12 @@ import { ShipmentResDto } from 'src/app/dto/shipment/ShipmentResDto';
 import { AuthService } from 'src/app/services/auth.service';
 import { OrderDetailsService } from 'src/app/services/order.details.service';
 import { OrderService } from 'src/app/services/order.service';
+import {
+  PENDING_PAYMENT,
+  CANCELED,
+  PAID,
+  SHIPPING,
+} from 'src/app/constant/contant';
 
 @Component({
   selector: 'list-order',
@@ -46,7 +52,6 @@ export class OrderListComponent implements OnInit {
     firstValueFrom(this.orderService.getAll())
       .then((res) => {
         this.orders = res;
-        console.log(res);
 
         for (const order of this.orders) {
           firstValueFrom(this.orderDetailsService.getByOrderId(order.id))
@@ -70,9 +75,13 @@ export class OrderListComponent implements OnInit {
 
   getSeverity(status: string) {
     switch (status) {
-      case 'true':
+      case SHIPPING:
+        return 'info';
+      case PAID:
         return 'success';
-      case 'false':
+      case PENDING_PAYMENT:
+        return 'danger';
+      case CANCELED:
         return 'danger';
     }
     return '';

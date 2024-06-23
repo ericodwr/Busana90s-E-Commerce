@@ -69,19 +69,12 @@ export class DashboardComponent implements OnInit {
             const year = Number(data.updatedAt.split('-')[0]);
             return { time: data.updatedAt, total: data.total, month, year };
           });
-        const dataOrder = res
-          .filter((o) => o.status == PAID)
-          .map((data) => {
-            const month = Number(data.updatedAt.split('-')[1]);
-            const year = Number(data.updatedAt.split('-')[0]);
-            return { time: data.updatedAt, total: data.total, month, year };
-          });
 
         const allYear = [
           ...new Set(this.dataOrderPaidChart.map((data) => data.year)),
         ];
 
-        for (const dataYear of allYear) {
+        for (const dataYear of allYear.sort().reverse()) {
           this.years?.push({ year: dataYear });
         }
 

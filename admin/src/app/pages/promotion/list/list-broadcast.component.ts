@@ -25,7 +25,6 @@ export class ListBroadcastComponent implements OnInit {
       .catch((err) => console.log(err));
 
     this.profile = this.authService.getProfile();
-    console.log(this.profile);
   }
 
   ngOnInit(): void {
