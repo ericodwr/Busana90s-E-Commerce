@@ -7,25 +7,25 @@
     <!-- Product Data -->
     <div class="grid col-12 gap-2 justify-content-between my-4">
       <div
-        class="bg-primary flex p-3 gap-2 justify-content-between align-items-center font-semibold border-round-md col-2"
+        class="bg-primary flex p-2 gap-2 justify-content-between align-items-center font-semibold border-round-md col-2"
       >
         <h3>All Products:</h3>
         <h3>{{ totalProducts }}</h3>
       </div>
       <div
-        class="bg-primary flex p-3 gap-2 justify-content-between align-items-center font-semibold border-round-md col-2"
+        class="bg-primary flex p-2 gap-2 justify-content-between align-items-center font-semibold border-round-md col-2"
       >
         <h3>All Categories:</h3>
         <h3>{{ allCategories }}</h3>
       </div>
       <div
-        class="bg-primary flex p-3 gap-2 justify-content-between align-items-center font-semibold border-round-md col-2"
+        class="bg-primary flex p-2 gap-2 justify-content-between align-items-center font-semibold border-round-md col-2"
       >
         <h3>Products Active:</h3>
         <h3>{{ productsActive }}</h3>
       </div>
       <div
-        class="bg-gray-500 flex p-3 gap-2 justify-content-between align-items-center font-semibold border-round-md col-2"
+        class="bg-gray-500 flex p-2 gap-2 justify-content-between align-items-center font-semibold border-round-md col-2"
       >
         <h3>Products Sold:</h3>
         <h3>{{ productSold }}</h3>
@@ -35,26 +35,26 @@
     <!-- Order Data -->
     <div class="grid col-12 gap2 justify-content-between">
       <div
-        class="bg-primary flex p-3 gap-2 justify-content-between align-items-center font-semibold border-round-md col-2"
+        class="bg-primary flex p-2 gap-2 justify-content-between align-items-center font-semibold border-round-md col-2"
       >
         <h3>Total Order:</h3>
         <h3>{{ totalOrders }}</h3>
       </div>
 
       <div
-        class="bg-green-500 flex p-3 gap-2 justify-content-between align-items-center font-semibold border-round-md col-2"
+        class="bg-green-500 flex p-2 gap-2 justify-content-between align-items-center font-semibold border-round-md col-2"
       >
         <h3>Order Shipping:</h3>
         <h3>{{ shippingOrder }}</h3>
       </div>
       <div
-        class="bg-yellow-200 flex p-3 gap-2 justify-content-between align-items-center font-semibold border-round-md col-2"
+        class="bg-yellow-200 flex p-2 gap-2 justify-content-between align-items-center font-semibold border-round-md col-2"
       >
         <h3>Order Paid:</h3>
         <h3>{{ paidOrder }}</h3>
       </div>
       <div
-        class="bg-red-200 flex p-3 gap-2 justify-content-between align-items-center font-semibold border-round-md col-2"
+        class="bg-red-200 flex p-2 gap-2 justify-content-between align-items-center font-semibold border-round-md col-2"
       >
         <h3>Order Canceled:</h3>
         <h3>{{ canceledOrder }}</h3>
@@ -67,7 +67,7 @@
         Total Income in {{ forms.get("formYear")?.value }}:
         {{ totalOrderIncome | currency : "Rp " }}
       </h2>
-      <div>
+      <div class="my-3">
         <form [formGroup]="forms">
           <p-dropdown
             formControlName="formYear"
