@@ -10,9 +10,11 @@ import React from 'react';
 export const dynamic = 'force-dynamic';
 
 const ProductDetailPage = async ({ params }) => {
-  const data = await api.get(`/api/product/detail/?id=${params.id}`);
+  const data = await api.get(`/api/product/detail/?id=${params.id}`, {
+    timeout: 60000,
+  });
 
-  const products = await api.get('/api/product-latest');
+  const products = await api.get('/api/product-latest', { timeout: 60000 });
 
   return (
     <>

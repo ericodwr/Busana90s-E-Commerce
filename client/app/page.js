@@ -8,11 +8,11 @@ import Banner from './components/Banner';
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-  const products = await api.get('/api/product-latest');
+  const products = await api.get('/api/product-latest', { timeout: 60000 });
 
-  const categories = await api.get('/api/category-client');
+  const categories = await api.get('/api/category-client', { timeout: 60000 });
 
-  const banners = await api.get('/api/banner-active');
+  const banners = await api.get('/api/banner-active', { timeout: 60000 });
 
   return (
     <main className="min-h-screen">

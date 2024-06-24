@@ -23,12 +23,14 @@ const OrderStatus = () => {
       changeSnapShow(true);
       const response = await api.get(
         `/api/transaction-data/?orderId=${orderId}`,
+        { timeout: 60000 },
       );
       let products = [];
 
       for (const order of response.data.order_details) {
         const product = await api.get(
           `/api/product/detail/?id=${order.productId}`,
+          { timeout: 60000 },
         );
         products.push(product.data);
       }

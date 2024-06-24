@@ -43,7 +43,7 @@ const CheckoutPage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await api.get('/province');
+      const data = await api.get('/province', { timeout: 60000 });
       setProvinces(data.data.rajaongkir.results);
       return data;
     };
@@ -103,7 +103,7 @@ const CheckoutPage = () => {
     } else if (e.target.name == 'province') {
       const [id, name] = e.target.value.split('-');
       const data = api
-        .get(`/city/?province=${id}`)
+        .get(`/city/?province=${id}`, { timeout: 60000 })
         .then((res) => {
           setCity(res.data.rajaongkir.results);
           setFormData((prev) => {
@@ -121,6 +121,7 @@ const CheckoutPage = () => {
       api
         .get(
           `/cost?destination=${cityId}&weight=1000&courier=${e.target.value}`,
+          { timeout: 60000 },
         )
         .then((res) => {
           setCourierServices(res.data.rajaongkir.results[0].costs);

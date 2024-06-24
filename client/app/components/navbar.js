@@ -38,7 +38,9 @@ const Navbar = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const categories = await api.get(`/api/category-client`);
+      const categories = await api.get(`/api/category-client`, {
+        timeout: 60000,
+      });
       setCategories(categories.data);
     };
     fetchData();

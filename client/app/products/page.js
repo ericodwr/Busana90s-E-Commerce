@@ -5,7 +5,7 @@ import { api } from '../utils/api';
 export const dynamic = 'force-dynamic';
 
 const ProductsPage = async () => {
-  const products = await api.get(`/api/product`);
+  const products = await api.get(`/api/product`, { timeout: 60000 });
 
   return (
     <section className="container min-h-screen">

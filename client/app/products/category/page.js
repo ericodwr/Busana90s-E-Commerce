@@ -8,10 +8,12 @@ export const dynamic = 'force-dynamic';
 const CategoryPage = async ({ searchParams }) => {
   const category = await api.get(
     `/api/category/name/?name=${searchParams.name}`,
+    { timeout: 60000 },
   );
 
   const allProductsByCategory = await api.get(
     `/api/all-product-category/?categoryId=${category.data.id}`,
+    { timeout: 60000 },
   );
 
   return (

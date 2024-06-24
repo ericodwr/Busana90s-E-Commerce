@@ -5,6 +5,7 @@ import Card from './Card';
 const ProductsByCategory = async ({ categoryId, small }) => {
   const allProductsByCategory = await axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/api/all-product-category/?categoryId=${categoryId}`,
+    { timeout: 60000 },
   );
 
   return (
