@@ -37,6 +37,7 @@ export class CreateProductComponent implements OnInit {
   visible: boolean = false;
   adminId: string | undefined = '';
   categories: CategoryResDto[] = [];
+  loading: boolean = false;
 
   // Forms
   productForm = this.fb.group({
@@ -87,8 +88,11 @@ export class CreateProductComponent implements OnInit {
       'description',
       this.productForm.getRawValue().description
     );
+
+    this.loading = true;
     firstValueFrom(this.productService.createProduct(this.formData))
       .then((res) => {
+        this.loading = false;
         this.router.navigateByUrl('/products');
       })
       .catch((err) => console.log(err));
