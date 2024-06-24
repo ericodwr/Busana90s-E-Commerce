@@ -136,7 +136,7 @@
         label="Save"
         btnType="submit"
         class="absolute top-0 right-0 mt-4 mr-3 save"
-        [disabled]="productForm.invalid"
+        [disabled]="productForm.invalid && uploadedFiles.length > 0"
       ></app-button>
     </form>
   </div>
