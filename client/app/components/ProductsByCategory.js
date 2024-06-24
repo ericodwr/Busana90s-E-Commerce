@@ -8,14 +8,14 @@ const ProductsByCategory = async ({ categoryId, small }) => {
     { timeout: 60000 },
   );
 
+  const slicedProduct = allProductsByCategory.data.slice(0, 4);
+
   return (
     <>
-      {allProductsByCategory.data.map((product, i) => (
+      {slicedProduct.map((product, i) => (
         <Card data={product} small={small} key={i} />
       ))}
-      {!allProductsByCategory.data.length && (
-        <h2 className="text-3xl ">No products!</h2>
-      )}
+      {!slicedProduct.length && <h2 className="text-3xl ">No products!</h2>}
     </>
   );
 };
