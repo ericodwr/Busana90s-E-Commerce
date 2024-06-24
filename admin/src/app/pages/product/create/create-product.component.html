@@ -132,9 +132,11 @@
         </div>
       </div>
       <app-button
+        [loading]="loading"
         label="Save"
         btnType="submit"
         class="absolute top-0 right-0 mt-4 mr-3 save"
+        [disabled]="productForm.invalid"
       ></app-button>
     </form>
   </div>
@@ -168,7 +170,6 @@
       </div>
 
       <app-button
-        [loading]="loading"
         label="Create"
         class="col-12"
         btnType="submit"
