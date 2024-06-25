@@ -53,7 +53,7 @@ export default async function Home() {
               </Link>
             </div>
             <div className="grid-homepage">
-              <ProductsByCategory categoryId={data.id} />
+              <ProductsByCategory limit={true} categoryId={data.id} />
             </div>
           </div>
         ))}
