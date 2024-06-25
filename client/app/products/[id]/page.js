@@ -14,7 +14,9 @@ const ProductDetailPage = async ({ params }) => {
     timeout: 60000,
   });
 
-  const products = await api.get('/api/product-latest', { timeout: 60000 });
+  const products = await (
+    await api.get('/api/product', { timeout: 60000 })
+  ).data.slice(0, 6);
 
   return (
     <>
@@ -78,7 +80,7 @@ const ProductDetailPage = async ({ params }) => {
               </Link>
             </div>
             <div className="grid-other-product">
-              {products.data.map((product, i) => (
+              {products.map((product, i) => (
                 <Card data={product} small={true} key={i} />
               ))}
             </div>
