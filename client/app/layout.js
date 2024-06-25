@@ -4,7 +4,6 @@ import Navbar from './components/navbar';
 import { CartProvider } from './context/CartProvider';
 import Footer from './components/Footer';
 import ToastProvider from './components/ToastProvider';
-import { Bounce, ToastContainer } from 'react-toastify';
 
 const inter = Inter({ subsets: ['latin'] });
 

@@ -58,7 +58,7 @@ const Navbar = () => {
                     {!snapShow ? (
                       <Link href={'/'}>
                         <Image
-                          className="h-30 w-30"
+                          className="h-28 w-28"
                           width={0}
                           height={0}
                           src="/logo.svg"
@@ -68,7 +68,7 @@ const Navbar = () => {
                       </Link>
                     ) : (
                       <Image
-                        className="h-30 w-30"
+                        className="h-28 w-28"
                         width={0}
                         height={0}
                         src="/logo.svg"
