@@ -63,7 +63,7 @@ export class DashboardComponent implements OnInit {
         this.paidOrder = res.filter((o) => o.status == PAID).length;
         this.canceledOrder = res.filter((o) => o.status == CANCELED).length;
         this.dataOrderPaidChart = res
-          .filter((o) => o.status == PAID || SHIPPING)
+          .filter((o) => o.status == SHIPPING)
           .map((data) => {
             const month = Number(data.updatedAt.split('-')[1]);
             const year = Number(data.updatedAt.split('-')[0]);
