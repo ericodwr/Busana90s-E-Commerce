@@ -206,12 +206,12 @@ export class DashboardComponent implements OnInit {
 
   check() {
     const yearValue = this.forms.get('formYear')?.value;
-
     const dataOrder = this.dataOrderPaidChart.filter(
       (data) => data.year == yearValue
     );
 
     const dataChart = [];
+
     if (yearValue === 2023) {
       dataChart.push(
         2450000,
