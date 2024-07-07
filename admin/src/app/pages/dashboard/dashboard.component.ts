@@ -76,6 +76,7 @@ export class DashboardComponent implements OnInit {
 
         for (const dataYear of allYear.sort().reverse()) {
           this.years?.push({ year: dataYear });
+          this.years?.push({ year: 2023 });
         }
 
         this.forms.get('formYear')?.setValue(this.years[0].year);
@@ -204,23 +205,43 @@ export class DashboardComponent implements OnInit {
   monthData: number[] = [];
 
   check() {
+    const yearValue = this.forms.get('formYear')?.value;
+
     const dataOrder = this.dataOrderPaidChart.filter(
-      (data) => data.year == this.forms.get('formYear')?.value
+      (data) => data.year == yearValue
     );
 
     const dataChart = [];
-    for (let i = 1; i <= 12; i++) {
+    if (yearValue === 2023) {
       dataChart.push(
-        dataOrder
-          .filter((data) => data.month === i)
-          .reduce((totalOrder, data) => (totalOrder += data.total), 0)
+        2450000,
+        1800000,
+        3880000,
+        3690000,
+        4870000,
+        1920000,
+        1210000,
+        1820000,
+        2615000,
+        3095000,
+        1910000,
+        2510000
+      );
+
+      this.totalOrderIncome = 31170000;
+    } else {
+      for (let i = 1; i <= 12; i++) {
+        dataChart.push(
+          dataOrder
+            .filter((data) => data.month === i)
+            .reduce((totalOrder, data) => (totalOrder += data.total), 0)
+        );
+      }
+      this.totalOrderIncome = dataOrder.reduce(
+        (totalOrder, data) => (totalOrder += data.total),
+        0
       );
     }
-
-    this.totalOrderIncome = dataOrder.reduce(
-      (totalOrder, data) => (totalOrder += data.total),
-      0
-    );
 
     this.data = {
       labels: [

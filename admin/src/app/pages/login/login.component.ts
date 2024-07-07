@@ -16,7 +16,7 @@ export class LoginComponent {
     private router: Router,
     private title: Title
   ) {
-    this.title.setTitle('Dashboard Sendbylov');
+    this.title.setTitle('Login Busana90s');
   }
 
   loading = false;
