@@ -178,7 +178,7 @@
     <div class="grid col-12">
       <p class="col-5">Shipping Cost</p>
       <p class="col-1">:</p>
-      <p class="col-6">{{ shipmentData?.shipping_cost }}</p>
+      <p class="col-6">{{ shipmentData?.shipping_cost | currency : "Rp " }}</p>
     </div>
 
     <div class="grid col-12">
