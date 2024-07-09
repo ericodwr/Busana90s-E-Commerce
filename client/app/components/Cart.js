@@ -12,6 +12,7 @@ import Link from 'next/link';
 import React, { Fragment, useEffect } from 'react';
 import { useCartContext } from '../context/CartProvider';
 import { showToast } from '../utils/toastHelper';
+import { convertMoney } from '../utils/convertMoney';
 
 const Cart = ({ open, setOpen }) => {
   const { cartItems, total, removeFromCart } = useCartContext();
@@ -90,7 +91,9 @@ const Cart = ({ open, setOpen }) => {
                                         <h3>
                                           <a href={'/'}>{cart.name}</a>
                                         </h3>
-                                        <p className="ml-4">Rp.{cart.price}</p>
+                                        <p className="ml-4">
+                                          {convertMoney(cart.price)}
+                                        </p>
                                       </div>
                                     </div>
                                     <div className="flex flex-1 items-end justify-between text-sm">
@@ -123,7 +126,7 @@ const Cart = ({ open, setOpen }) => {
                       <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                         <div className="flex justify-between text-base font-medium text-gray-900">
                           <p>Subtotal</p>
-                          <p>Rp. {total}</p>
+                          <p>{convertMoney(total)}</p>
                         </div>
                         <p className="mt-0.5 text-sm text-gray-500">
                           Shipping and taxes calculated at checkout.

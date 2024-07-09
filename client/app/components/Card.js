@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { convertMoney } from '../utils/convertMoney';
 
 const Card = ({ small, data }) => {
   const { name, size, price, product_imgs, id } = data;
@@ -18,7 +19,7 @@ const Card = ({ small, data }) => {
       />
       <h4>{name}</h4>
       <p>{size}</p>
-      <p>Rp. {price}</p>
+      <p>{convertMoney(price)}</p>
     </Link>
   );
 };

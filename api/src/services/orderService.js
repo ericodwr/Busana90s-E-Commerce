@@ -310,7 +310,6 @@ const getOrderShipping = async () => {
   return orders;
 };
 
-
 module.exports = {
   create,
   getAll,

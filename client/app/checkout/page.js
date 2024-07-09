@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { api } from '../utils/api';
 import { useCartContext } from '../context/CartProvider';
 import useSnap from '../hooks/useSnap';
+import { convertMoney } from '../utils/convertMoney';
 
 const initialState = {
   name: '',
@@ -403,12 +404,12 @@ const CheckoutPage = () => {
                       key={item.id}
                     >
                       <p>{item.name}</p>
-                      <p>Rp. {item.price}</p>
+                      <p>{convertMoney(item.price)}</p>
                     </div>
                   ))}
                   <div className="flex justify-between opacity-50">
                     <p>Shipping Costs</p>
-                    <p>Rp. {formData.shippingCost}</p>
+                    <p>{convertMoney(formData.shippingCost)}</p>
                   </div>
                   <div className="h-0.5 w-full bg-primary"></div>
                 </div>
@@ -416,7 +417,7 @@ const CheckoutPage = () => {
               <div className="flex flex-col gap-4 mt-4">
                 <div className="flex justify-between">
                   <p className="font-bold">Total</p>
-                  <p className="font-bold">Rp. {formData.total}</p>
+                  <p className="font-bold">{convertMoney(formData.total)}</p>
                 </div>
               </div>
               <button

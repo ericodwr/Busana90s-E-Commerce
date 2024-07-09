@@ -8,6 +8,7 @@ import { api } from '../utils/api';
 import { useCartContext } from '../context/CartProvider';
 import { convertDateToID } from '../utils/convertDate';
 import Image from 'next/image';
+import { convertMoney } from '../utils/convertMoney';
 
 const OrderStatus = () => {
   const [data, setData] = useState(null);
@@ -84,7 +85,7 @@ const OrderStatus = () => {
                 </div>
               </div>
               <div className="flex flex-col justify-between">
-                <p>Rp. {product?.price}</p>
+                <p>{convertMoney(product?.price)}</p>
                 <p>Quantity 1</p>
               </div>
             </div>
@@ -103,7 +104,7 @@ const OrderStatus = () => {
           <div className="grid col-span-6 grid-cols-3">
             <h2>Total Payment</h2>
             <h2>:</h2>
-            <h2>Rp. {data?.total}</h2>
+            <h2>{convertMoney(data?.total)}</h2>
           </div>
         </div>
 
@@ -163,7 +164,7 @@ const OrderStatus = () => {
               <div className="grid col-span-12 grid-cols-3">
                 <h2>Shipping Cost</h2>
                 <h2>:</h2>
-                <h2>Rp. {data?.shipments.shipping_cost}</h2>
+                <h2>{convertMoney(data?.shipments.shipping_cost)}</h2>
               </div>
             </div>
           </div>

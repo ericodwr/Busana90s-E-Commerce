@@ -4,6 +4,7 @@ import ImagesProductDetail from '@/app/components/ImagesProductDetail';
 import ProductsByCategory from '@/app/components/ProductsByCategory';
 import { api } from '@/app/utils/api';
 import { capitalizeFirstLetter } from '@/app/utils/capitalize';
+import { convertMoney } from '@/app/utils/convertMoney';
 import Link from 'next/link';
 import React from 'react';
 
@@ -33,7 +34,9 @@ const ProductDetailPage = async ({ params }) => {
                 <div className="flex flex-col">
                   <h1 className="text-3xl">{data.data.name}</h1>
                   <p className="opacity-50 ">Size {data.data.size}</p>
-                  <p className="text-xl font-bold">Rp. {data.data.price}</p>
+                  <p className="text-xl font-bold">
+                    {convertMoney(data.data.price)}
+                  </p>
                 </div>
 
                 {/* Description */}
